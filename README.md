@@ -13,7 +13,14 @@ Example main.py run commands:
  - python main.py --data_type sin --disc_iter 2 --gen_iter 1 --batch_size 256 --disc_model 64 32 16 --gen_model 64 32 16 --noise_dim 8
  - python main.py --data_type mnist --disc_iter 2 --gen_iter 1 --batch_size 32 --disc_model 1024 512 256 --gen_model 256 512 1024 --noise_dim 100
 
-Note: GANs are super sensitive to hyper parameter changes and sometimes initial weights. The image generated is cherry picked and you may have to run a couple times to get similar results.
+
+# Discussion
+GANs are super sensitive to hyper parameter changes and sometimes initial weights. The image generated is cherry picked and you may have to run a couple times to get similar results.
+
+We see issues like mode collapse in both the sinusoid dataset as well as the MNIST dataset. Often, only part of the sinusoid is captured by the generator.
+
+You can see the sensitivity by modifying the example run parameters.
+
 
 # Dependencies
 numpy

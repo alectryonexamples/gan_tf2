@@ -5,15 +5,11 @@ import skimage
 
 if __name__ == '__main__':
     dir_name = "images"
-    max_iter = 2000
+    max_iter = 1500
     images = []
     for i in range(0, max_iter, 10):
         filename = os.path.join(dir_name, str(i) + ".png")
         image = imageio.imread(filename)
-
-        # new_shape = (int(image.shape[0]*0.5), int(image.shape[1]*0.5), image.shape[2])
-        # image = skimage.transform.resize(image, new_shape)
-
         images.append(image)
 
     # some post processing as matplotlib may save them in different (width) sizes depending on if there are negatives to be had or not
