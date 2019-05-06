@@ -23,4 +23,4 @@ if __name__ == '__main__':
             images[i] = image
 
 
-    imageio.mimsave('readme_images/sin.gif', images)
+    imageio.mimsave('readme_images/tmp.gif', images)
