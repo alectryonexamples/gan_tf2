@@ -43,6 +43,12 @@ if __name__ == '__main__':
     parser.add_argument('--image_dir', dest='image_dir', type=str,
         default='images',
         help='directory to store images in.')
+    parser.add_argument('--disc_lr', dest='disc_lr', type=float,
+        default=1e-3,
+        help='learning rate for discriminator.')
+    parser.add_argument('--gen_lr', dest='gen_lr', type=float,
+        default=1e-3,
+        help='learning rate for discriminator.')
     args = parser.parse_args()
 
     if args.data_type == 'mnist':
@@ -50,18 +56,16 @@ if __name__ == '__main__':
     else:
         dataset = PointDataset(data_type=args.data_type)
 
-
     # build GAN
     gen_model = build_simple_mlp_model(args.noise_dim, args.gen_model, dataset.dim(), "gen")
     disc_model = build_simple_mlp_model(dataset.dim(), args.disc_model, 1, "disc")
-    gan = GAN(gen_model, disc_model, loss_type="orig")
+    gan = GAN(gen_model, disc_model, loss_type="orig", disc_lr=args.disc_lr, gen_lr=args.gen_lr)
 
     # make image directory
     try:
         os.mkdir(args.image_dir)
     except FileExistsError as e:
         pass
-
 
     plt.figure(1, figsize=(7, 5))
     # train
@@ -86,16 +90,17 @@ if __name__ == '__main__':
             if args.data_type == 'mnist':
                 noise_batch = tf.random.uniform((15, args.noise_dim), dtype=np.float32)
                 generator_samples = gen_model(noise_batch)
-                
+
                 plt.clf()
                 plt.subplot(4, 4, 1)
                 plt.imshow(np.reshape(data_batch[0, :], (28, 28)), vmin=0, vmax=1)
+                plt.gca().set_axis_off()
                 plt.title("Real")
 
                 for i in range(15):
                     plt.subplot(4, 4, 2+i)
                     plt.imshow(np.reshape(generator_samples[i, :], (28, 28)), vmin=0, vmax=1)
-                    plt.title("Generated")
+                    plt.gca().set_axis_off()
 
                 plt.show(block=False)
                 plt.pause(0.1)
