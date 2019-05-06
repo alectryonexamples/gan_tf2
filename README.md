@@ -4,7 +4,8 @@ Goal is just to see the basics of GAN training as well as tensorflow 2.
 
 Currently, only network models are mulilayer perceptrons (no CNNs).
 ![Alt text](readme_images/sin.gif?raw=true "Sin data")
-(generated with the first example command)
+![Alt text](readme_images/mnist.gif?raw=true "MNIST data")
+(generated with the example commands)
 
 # Organization/Usage
 *gan.py* contains the main file for GAN related functions. *dataset.py* contains the various datasets to test with. *main.py* is what you would run.
