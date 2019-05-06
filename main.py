@@ -97,9 +97,9 @@ if __name__ == '__main__':
                 plt.gca().set_axis_off()
                 plt.title("Real")
 
-                for i in range(15):
-                    plt.subplot(4, 4, 2+i)
-                    plt.imshow(np.reshape(generator_samples[i, :], (28, 28)), vmin=0, vmax=1)
+                for j in range(15):
+                    plt.subplot(4, 4, 2+j)
+                    plt.imshow(np.reshape(generator_samples[j, :], (28, 28)), vmin=0, vmax=1)
                     plt.gca().set_axis_off()
 
                 plt.show(block=False)
